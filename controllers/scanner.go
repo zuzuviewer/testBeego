@@ -182,7 +182,7 @@ func (c *ScannerController) Post() {
 		c.Abort("412")
 	}
 	resultJson := ResultJson{result}
-	fmt.Printf("result json is %v\n", resultJson)
+	//fmt.Printf("result json is %v\n", resultJson)
 	resultByte, err := json.Marshal(resultJson)
 	if err != nil {
 		fmt.Printf("error,result json convert to byte failed,err is %v\n", err)
