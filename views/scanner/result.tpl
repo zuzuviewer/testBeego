@@ -37,6 +37,7 @@ $(document).ready(function(){
         });
         console.log("post json is: " + JSON.stringify(d));
         $.post("/query/scanner/result",JSON.stringify(d),function(result){
+        console.log("get result is "+result);
             $("tr").remove(".result-data");
             var jsonResult = JSON.parse(result,null).scanner_results;
             for(var i in jsonResult){
@@ -76,7 +77,7 @@ $(document).ready(function(){
             </div>
     </div>
     <div class="form-group">
-            <label for="inputEndTime">结束时间</label>
+            <label for="inputEndTime">{{.pageNums}}</label>
             <div class="input-append date form_date inputEndTime form-group" date-date-format="yyyy-mm-dd">
                 <input size="16" name="end_date" class="form-control" type="text" value="" id="inputEndTime" required readonly>
                 <span class="add-on"><i class="icon-th"></i></span>

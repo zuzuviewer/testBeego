@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e488a375-7306-4b7f-8b04-f7c1c908e18c" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/controllers/scanner.go" afterPath="$PROJECT_DIR$/controllers/scanner.go" />
+      <change beforePath="$PROJECT_DIR$/testBeego" afterPath="$PROJECT_DIR$/testBeego" />
       <change beforePath="$PROJECT_DIR$/views/scanner/result.tpl" afterPath="$PROJECT_DIR$/views/scanner/result.tpl" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -36,7 +39,7 @@
       <file leaf-file-name="default.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/default.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
+            <state relative-caret-position="162">
               <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
               <folding>
                 <element signature="e#21#59#0" expanded="true" />
@@ -45,11 +48,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="result.tpl" pinned="false" current-in-tab="true">
+      <file leaf-file-name="result.tpl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/scanner/result.tpl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="39" column="43" lean-forward="true" selection-start-line="39" selection-start-column="43" selection-end-line="39" selection-end-column="43" />
+            <state relative-caret-position="702">
+              <caret line="39" column="40" lean-forward="false" selection-start-line="39" selection-start-column="40" selection-end-line="39" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -87,13 +90,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="scanner.go" pinned="false" current-in-tab="false">
+      <file leaf-file-name="scanner.go" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controllers/scanner.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="327">
-              <caret line="193" column="30" lean-forward="false" selection-start-line="193" selection-start-column="30" selection-end-line="193" selection-end-column="30" />
+            <state relative-caret-position="201">
+              <caret line="210" column="113" lean-forward="false" selection-start-line="210" selection-start-column="113" selection-end-line="210" selection-end-column="113" />
               <folding>
-                <element signature="e#21#146#0" expanded="true" />
+                <element signature="e#21#157#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -134,8 +137,8 @@
         <option value="$PROJECT_DIR$/conf/app.conf" />
         <option value="$PROJECT_DIR$/utils/mongo/mongo.go" />
         <option value="$PROJECT_DIR$/routers/router.go" />
-        <option value="$PROJECT_DIR$/controllers/scanner.go" />
         <option value="$PROJECT_DIR$/views/scanner/result.tpl" />
+        <option value="$PROJECT_DIR$/controllers/scanner.go" />
       </list>
     </option>
   </component>
@@ -345,7 +348,7 @@
         <state relative-caret-position="1728">
           <caret line="103" column="25" lean-forward="false" selection-start-line="103" selection-start-column="25" selection-end-line="103" selection-end-column="25" />
           <folding>
-            <element signature="e#21#146#0" expanded="true" />
+            <element signature="e#21#157#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -655,16 +658,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/default.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding>
-            <element signature="e#21#59#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../github.com/astaxie/beego/context/input.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="630">
@@ -705,21 +698,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/scanner.go">
+    <entry file="file://$PROJECT_DIR$/controllers/default.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="193" column="30" lean-forward="false" selection-start-line="193" selection-start-column="30" selection-end-line="193" selection-end-column="30" />
+        <state relative-caret-position="162">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding>
-            <element signature="e#21#146#0" expanded="true" />
+            <element signature="e#21#59#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/scanner/result.tpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="39" column="43" lean-forward="true" selection-start-line="39" selection-start-column="43" selection-end-line="39" selection-end-column="43" />
+        <state relative-caret-position="702">
+          <caret line="39" column="40" lean-forward="false" selection-start-line="39" selection-start-column="40" selection-end-line="39" selection-end-column="40" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/scanner.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="210" column="113" lean-forward="false" selection-start-line="210" selection-start-column="113" selection-end-line="210" selection-end-column="113" />
+          <folding>
+            <element signature="e#21#157#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

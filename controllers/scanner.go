@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	//"bytes"
 	"bytes"
 	"encoding/json"
 	"fmt"
@@ -50,7 +51,10 @@ type Result struct {
 }
 
 type ResultJson struct {
-	Result []Result `json:"scanner_results"`
+	Result         []Result `json:"scanner_results"`
+	TotalResultCount  int32    `json:"total_result_count"`
+	EachPageResultNum int32 `json:"each_page_result_num"`
+	CurrentPageNum int32    `json:"current_page_num"`
 }
 
 const (
@@ -76,7 +80,7 @@ func (c *ScannerController) Get() {
 		c.Abort("500")
 	}
 	c.TplName = "scanner/result.tpl"
-	//c.Data["perPageNums"] = perPageNums
+	c.Data["perPageNums"] = perPageNums
 	//c.TplName = "scanner/result.tpl"
 	//page := c.GetString("page")
 	//if "" == page {
@@ -141,26 +145,22 @@ func (c *ScannerController) Post() {
 		c.Abort("500")
 	}
 	//c.Data["pageNums"] = pageNums
-	c.Data["perPageNums"] = perPageNums
+	//c.Data["perPageNums"] = perPageNums
 	c.TplName = "scanner/result.tpl"
 	page := c.GetString("page")
+	query := mgo.Query{}
+	currentPageNum := 1
 	if "" == page {
-		//fmt.Printf("initialize query collection condition\n")
-		//fmt.Printf("request body is :%v\n", c.Ctx.Input.RequestBody)
 		json.Unmarshal(c.Ctx.Input.RequestBody, &queryCollectionCondition)
-		c.Data["currentPageNum"] = 1
 	} else {
-		currentPageNum, err := strconv.Atoi(page)
+		currentPageNumber, err := strconv.Atoi(page)
 		if err != nil {
 			fmt.Printf("error,currntPageNum is wrong value\n")
 			c.Abort("412")
 		}
-		c.Data["currentPageNum"] = currentPageNum
+		currentPageNum = currentPageNumber
 	}
-	//fmt.Printf("device id is %v\n", queryCollectionCondition.DeviceId)
-	//fmt.Printf("start time is %v\n", queryCollectionCondition.StartDate)
-	//fmt.Printf("end time is %v\n", queryCollectionCondition.EndDate)
-	query := mgo.Query{}
+	//
 	if queryCollectionCondition.DeviceId == "" {
 		if queryCollectionCondition.StartDate == "" && queryCollectionCondition.EndDate == "" {
 			query = *scannerCollection.Find(bson.M{})
@@ -208,7 +208,7 @@ func (c *ScannerController) Post() {
 		fmt.Printf("error,query all result failed,err is %v\n", err)
 		c.Abort("412")
 	}
-	resultJson := ResultJson{result}
+	resultJson := ResultJson{Result: result, TotalResultCount: int32(count),EachPageResultNum:int32(perPageNums), CurrentPageNum: int32(currentPageNum)}
 	//fmt.Printf("result json is %v\n", resultJson)
 	resultByte, err := json.Marshal(resultJson)
 	if err != nil {
