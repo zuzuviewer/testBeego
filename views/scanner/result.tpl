@@ -38,7 +38,26 @@ $(document).ready(function(){
         });
         console.log("post json is: " + JSON.stringify(d));
         $.post("/query/scanner/result",JSON.stringify(d),function(result){
-            console.log("get result " + JSON.stringify(result));
+            console.log("get result " + JSON.parse(result,null).scanner_results);
+            $("tr").remove(".result-data");
+            var jsonResult = JSON.parse(result,null).scanner_results;
+            for(var i in jsonResult){
+                console.log("i is " + i);
+                var one_tr = document.createElement("tr");
+                one_tr.setAttribute('class','result-data');
+                one_tr.innerHTML="<td>"+i+"</td>"+"<td>"+jsonResult[i].device_id+"</td>"
+                +"<td>"+jsonResult[i].user_id+"</td>"
+                +"<td>"+jsonResult[i].user_name+"</td>"
+                +"<td>"+jsonResult[i].experiment_name+"</td>"
+                +"<td x:str>"+jsonResult[i].total_algae_density+"</td>"
+                +"<td>"+jsonResult[i].total_algae_count+"</td>"
+                +"<td>"+jsonResult[i].advantage_algae_name+"</td>"
+                +"<td x:str>"+jsonResult[i].advantage_algae_density+"</td>"
+                +"<td>"+jsonResult[i].advantage_algae_percent+"</td>"
+                +"<td>"+jsonResult[i].scanner_sample_volume+"</td>"
+                +"<td>"+jsonResult[i].sample_volume+"</td>";
+                $(".result-table").append(one_tr);
+            }
         });
     });
 });
@@ -69,8 +88,8 @@ $(document).ready(function(){
    </form>
    <br></br>
    <div class="table-responsive">
-     <table class="table table-striped table-condensed">
-            <tr>
+     <table class="table table-striped table-condensed result-table">
+            <tr class="result-head">
                      <td>序号</td>
                      <td>设备编号</td>
                      <td>用户编号</td>
@@ -86,7 +105,7 @@ $(document).ready(function(){
 
            </tr>
         {{range $key,$val := .currentResult}}
-            <tr>
+            <tr class="result-data">
                 <td>{{$key}}</td>
                 <td>{{$val.DeviceId}}</td>
                 <td>{{$val.UserId}}</td>
