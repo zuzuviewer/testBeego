@@ -1,9 +1,9 @@
 package controllers
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
-	"bytes"
 	"github.com/astaxie/beego"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
@@ -162,12 +162,39 @@ func (c *ScannerController) Post() {
 	//fmt.Printf("end time is %v\n", queryCollectionCondition.EndDate)
 	query := mgo.Query{}
 	if queryCollectionCondition.DeviceId == "" {
-		query = *scannerCollection.Find(bson.M{ /**"sampledate":bson.M{"$gte":queryCollectionCondition.startDate,
-		"$lte":queryCollectionCondition.endDate}**/})
-	} else {
-		query = *scannerCollection.Find(bson.M{"deviceid": queryCollectionCondition.DeviceId,
-			"sampledate": bson.M{"$gte": queryCollectionCondition.StartDate,
+		if queryCollectionCondition.StartDate == "" && queryCollectionCondition.EndDate == "" {
+			query = *scannerCollection.Find(bson.M{})
+		} else if queryCollectionCondition.StartDate == "" {
+			query = *scannerCollection.Find(bson.M{"sampledate": bson.M{
 				"$lte": queryCollectionCondition.EndDate}})
+		} else if queryCollectionCondition.EndDate == "" {
+			query = *scannerCollection.Find(bson.M{"sampledate": bson.M{
+				"$gte": queryCollectionCondition.StartDate,
+			}})
+		} else {
+			query = *scannerCollection.Find(bson.M{"sampledate": bson.M{
+				"$gte": queryCollectionCondition.StartDate,
+				"$lte": queryCollectionCondition.EndDate}})
+		}
+	} else {
+		if queryCollectionCondition.StartDate == "" && queryCollectionCondition.EndDate == "" {
+			query = *scannerCollection.Find(bson.M{
+				"deviceid": queryCollectionCondition.DeviceId})
+		} else if queryCollectionCondition.StartDate == "" {
+			query = *scannerCollection.Find(bson.M{
+				"deviceid": queryCollectionCondition.DeviceId, "sampledate": bson.M{
+					"$lte": queryCollectionCondition.EndDate}})
+		} else if queryCollectionCondition.EndDate == "" {
+			query = *scannerCollection.Find(bson.M{
+				"deviceid": queryCollectionCondition.DeviceId, "sampledate": bson.M{
+					"$gte": queryCollectionCondition.StartDate,
+				}})
+		} else {
+			query = *scannerCollection.Find(bson.M{
+				"deviceid": queryCollectionCondition.DeviceId,
+				"sampledate": bson.M{"$gte": queryCollectionCondition.StartDate,
+					"$lte": queryCollectionCondition.EndDate}})
+		}
 	}
 	count, err := query.Count()
 	if err != nil {
