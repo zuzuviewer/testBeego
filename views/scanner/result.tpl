@@ -30,7 +30,6 @@ $(document).ready(function(){
         });
 
     $('#querySubmitButton').click(function(){
-        console.log("hello kaka");
         var d = {};
         var t = $('#queryForm').serializeArray();
         $.each(t,function(){
@@ -38,14 +37,13 @@ $(document).ready(function(){
         });
         console.log("post json is: " + JSON.stringify(d));
         $.post("/query/scanner/result",JSON.stringify(d),function(result){
-            console.log("get result " + JSON.parse(result,null).scanner_results);
             $("tr").remove(".result-data");
             var jsonResult = JSON.parse(result,null).scanner_results;
             for(var i in jsonResult){
-                console.log("i is " + i);
                 var one_tr = document.createElement("tr");
+                var index = (parseInt(i)+1);
                 one_tr.setAttribute('class','result-data');
-                one_tr.innerHTML="<td>"+i+"</td>"+"<td>"+jsonResult[i].device_id+"</td>"
+                one_tr.innerHTML="<td>"+index+"</td>"+"<td>"+jsonResult[i].device_id+"</td>"
                 +"<td>"+jsonResult[i].user_id+"</td>"
                 +"<td>"+jsonResult[i].user_name+"</td>"
                 +"<td>"+jsonResult[i].experiment_name+"</td>"
